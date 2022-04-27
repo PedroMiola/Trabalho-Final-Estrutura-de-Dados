@@ -1,2 +1,2 @@
 # Trabalho-Final-Estrutura-de-Dados
-Comparação de um LSE e uma ABP
+Comparação de uma LSE e uma ABP
