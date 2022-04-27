@@ -1,7 +1,7 @@
 typedef struct LSE
 {
     int num;
-    LSE *prox;
+    struct LSE *prox;
 }LSE;
 
 LSE *criaLista (void);

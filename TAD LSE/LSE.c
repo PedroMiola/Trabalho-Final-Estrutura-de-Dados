@@ -48,7 +48,7 @@ LSE *insereMeio (LSE *list, int num)
 
     if (list == NULL)
     {
-        novo->prox == NULL;
+        novo->prox = NULL;
         list = novo;
         return list;
     }
@@ -63,7 +63,8 @@ LSE *insereMeio (LSE *list, int num)
     tamanhoLista = tamanhoLista/2;
     tamanhoLista--;
     aux = list;
-    whilie(tamanhoLista > 0);
+
+    while(tamanhoLista > 0)
     {
         aux = aux->prox;
         tamanhoLista--;
@@ -88,27 +89,36 @@ LSE *destroiLista (LSE *list)
 
 void consultaNum (LSE *list, int num)
 {
-    LSE *aux = list;
-    while (aux->num != num || aux != NULL)
+    LSE *aux; 
+    aux = list;
+    int i = 0;
+    while (aux != NULL)
     {
+        if(aux->num == num)
+        {
+            i++;
+        }            
         aux = aux->prox;
     }
-    if(aux == NULL)
+    if(i == 0)
     {
-        printf("\n\nNumero não presente");
+        printf("Numero nao presente");
     }
     else
     {
-        printf("\n\nNumero encontrado");
+        printf("Numero encontrado");
     }
 }
 
 void imprimeLista (LSE *list)
 {
-    LSE *aux = list;
+    LSE *aux;
+    aux = list;
+    int i = 1;
     while (aux != NULL)
     {
-        printf("\n- %d", aux->num);
+        printf("\n%d- %d", i, aux->num);
         aux = aux->prox;
+        i++;
     }
 }
