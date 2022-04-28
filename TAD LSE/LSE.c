@@ -123,7 +123,7 @@ void imprimeLista (LSE *list)
     }
 }
 
-LSE *insereInicioComp (LSE *list, int num, int *comp)
+LSE *insereInicioComp (LSE *list, int num, double *comp)
 {
     LSE *novo;
     novo = (LSE*) malloc (sizeof(LSE));
@@ -134,7 +134,7 @@ LSE *insereInicioComp (LSE *list, int num, int *comp)
     return list;
 }
 
-LSE *insereFinalComp (LSE *list, int num, int *comp)
+LSE *insereFinalComp (LSE *list, int num, double *comp)
 {
     LSE *novo, *aux;
     novo = (LSE*) malloc (sizeof(LSE));
@@ -159,7 +159,7 @@ LSE *insereFinalComp (LSE *list, int num, int *comp)
     return list;
 }
 
-LSE *insereMeioComp (LSE *list, int num, int *comp)
+LSE *insereMeioComp (LSE *list, int num, double *comp)
 {
     int tamanhoLista = 0;
     LSE *novo, *aux; 
@@ -198,7 +198,7 @@ LSE *insereMeioComp (LSE *list, int num, int *comp)
     return list;
 }
 
-void consultaNumComp (LSE *list, int num, int *comp)
+void consultaNumComp (LSE *list, int num, double *comp)
 {
     LSE *aux; 
     aux = list;
