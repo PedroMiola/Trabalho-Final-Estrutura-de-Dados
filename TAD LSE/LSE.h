@@ -1,20 +1,20 @@
 typedef struct LSE
 {
-    int num;
+    long num;
     struct LSE *prox;
 }LSE;
 
 LSE *criaLista (void);
 
-LSE *insereInicio (LSE *list, int num);
-LSE *insereFinal (LSE *list, int num);
-LSE *insereMeio (LSE *list, int num);
+LSE *insereInicio (LSE *list, long num);
+LSE *insereFinal (LSE *list, long num);
+LSE *insereMeio (LSE *list, long num);
 
-LSE *insereInicioComp (LSE *list, int num, double *comp);
-LSE *insereFinalComp (LSE *list, int num, double *comp);
-LSE *insereMeioComp (LSE *list, int num, double *comp);
+LSE *insereInicioComp (LSE *list, long num, long long int *comp);
+LSE *insereFinalComp (LSE *list, long num, long long int *comp);
+LSE *insereMeioComp (LSE *list, long num, long long int *comp);
 
 LSE *destroiLista (LSE *list);
-void consultaNum (LSE *list, int num);
-void consultaNumComp (LSE *list, int num, double *comp);
+void consultaNum (LSE *list, long num);
+void consultaNumComp (LSE *list, long num, long long int *comp);
 void imprimeLista (LSE *list);

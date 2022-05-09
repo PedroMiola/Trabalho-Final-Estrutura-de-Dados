@@ -7,7 +7,7 @@ LSE *criaLista(void)
     return NULL;
 }
 
-LSE *insereInicio(LSE *list, int num)
+LSE *insereInicio(LSE *list, long num)
 {
     LSE *novo;
     novo = (LSE*) malloc (sizeof(LSE));
@@ -18,7 +18,7 @@ LSE *insereInicio(LSE *list, int num)
     return list;
 }
 
-LSE *insereFinal (LSE *list, int num)
+LSE *insereFinal (LSE *list, long num)
 {
     LSE *novo, *aux;
     novo = (LSE*) malloc (sizeof(LSE));
@@ -39,7 +39,7 @@ LSE *insereFinal (LSE *list, int num)
     return list;
 }
 
-LSE *insereMeio (LSE *list, int num)
+LSE *insereMeio (LSE *list, long num)
 {
     int tamanhoLista = 0;
     LSE *novo, *aux; 
@@ -87,26 +87,22 @@ LSE *destroiLista (LSE *list)
     return NULL;
 }
 
-void consultaNum (LSE *list, int num)
+void consultaNum (LSE *list, long num)
 {
     LSE *aux; 
     aux = list;
     int i = 0;
-    while (aux != NULL)
+    while (aux != NULL && aux->num != num)    
     {
-        if(aux->num == num)
-        {
-            i++;
-        }            
         aux = aux->prox;
     }
-    if(i == 0)
+    if(aux == NULL)
     {
-        printf("Numero nao presente");
+        //printf("Numero nao presente");
     }
     else
     {
-        printf("Numero encontrado");
+        //printf("Numero encontrado");
     }
 }
 
@@ -123,7 +119,7 @@ void imprimeLista (LSE *list)
     }
 }
 
-LSE *insereInicioComp (LSE *list, int num, double *comp)
+LSE *insereInicioComp (LSE *list, long num, long long *comp)
 {
     LSE *novo;
     novo = (LSE*) malloc (sizeof(LSE));
@@ -134,7 +130,7 @@ LSE *insereInicioComp (LSE *list, int num, double *comp)
     return list;
 }
 
-LSE *insereFinalComp (LSE *list, int num, double *comp)
+LSE *insereFinalComp (LSE *list, long num, long long *comp)
 {
     LSE *novo, *aux;
     novo = (LSE*) malloc (sizeof(LSE));
@@ -159,7 +155,7 @@ LSE *insereFinalComp (LSE *list, int num, double *comp)
     return list;
 }
 
-LSE *insereMeioComp (LSE *list, int num, double *comp)
+LSE *insereMeioComp (LSE *list, long num, long long *comp)
 {
     int tamanhoLista = 0;
     LSE *novo, *aux; 
@@ -198,32 +194,22 @@ LSE *insereMeioComp (LSE *list, int num, double *comp)
     return list;
 }
 
-void consultaNumComp (LSE *list, int num, double *comp)
+void consultaNumComp (LSE *list, long num, long long *comp)
 {
     LSE *aux; 
     aux = list;
     int i = 0;
-    while (aux != NULL)
-    {
-        if (i == 0)
-        {
-            *comp += 1;
-            *comp += 1;
-
-        }
-
-        if(aux->num == num)
-        {
-            i++;
-        }            
+    while (aux != NULL && aux->num != num)
+    {            
         aux = aux->prox;
+        *comp += 1;
     }
-    if(i == 0)
+    if(aux == NULL)
     {
-        printf("Numero nao presente");
+        //printf("Numero nao presente");
     }
     else
     {
-        printf("Numero encontrado");
+        //printf("Numero encontrado");
     }
 }
