@@ -16,7 +16,7 @@ void imprimeArvore(ABP *arv , int nivel)
         for (x = 1; x <= nivel; x++)
             printf("=");
 
-        printf("%d\n", arv->info);
+        printf("%li\n", arv->info);
 
         if (arv->esq != NULL)
             imprimeArvore(arv->esq, (nivel + 1));
@@ -25,32 +25,52 @@ void imprimeArvore(ABP *arv , int nivel)
     }
 }
 
-ABP* insereArvore(ABP *arv, int chave)
+ABP* insereArvoreComp(ABP *arv, long int chave, long long int *comp)
 {
-     if (arv == NULL)
-     {
-         arv =  (ABP*) malloc(sizeof(ABP));
-         arv->info = chave;
-         arv->esq = NULL;
-         arv->dir = NULL;
-         return arv;
-     }
-     else
-          if (chave < arv->info)
-              arv->esq = insereArvore(arv->esq,chave);
-          else if (chave >= arv->info)
-              arv->dir = insereArvore(arv->dir,chave);
-     return arv;
+    ABP *novo;
+    novo = (ABP*) malloc(sizeof(ABP));
+    novo->info = chave;
+    novo->dir = NULL;
+    novo->esq = NULL;
+
+    *comp += 1;
+    if(arv == NULL)
+        arv = novo;
+    else
+    {
+        ABP *atual = arv;
+        ABP *ant = NULL;
+
+        while(atual != NULL)
+        {
+            ant = atual;
+
+            if (chave >= atual->info)
+                atual = atual->dir;
+            else
+                atual = atual->esq;
+
+            *comp += 2;
+        }
+
+        *comp += 1;
+        if(chave >= ant->info)
+            ant->dir = novo;
+        else
+            ant->esq = novo;
+    }
+
+    return arv;
 }
 
-ABP* consultaABP(ABP *arv, int chave)
+ABP* consultaABP(ABP *arv, long int chave)
 {
-    while (arv!=NULL)
+    while (arv != NULL)
     {
-        if (arv->info == chave)
+        if (chave == arv->info)
             return arv;
         else
-            if (arv->info > chave)
+            if (chave >= arv->info)
                 arv = arv->esq;
             else
                 arv = arv->dir;
@@ -58,12 +78,37 @@ ABP* consultaABP(ABP *arv, int chave)
     return NULL;
 }
 
-ABP* consultaOrdenadaPrimeiroABP(ABP *arv)
+ABP* consultaCompABP(ABP *arv, long int chave, long long int *comp)
+{
+    while (arv != NULL)
+    {
+        if (chave == arv->info)
+            return arv;
+        else
+        {
+            *comp += 1;
+            if (chave >= arv->info)
+                arv = arv->esq;
+            else
+                arv = arv->dir;
+        }
+
+        *comp += 2;
+    }
+    return NULL;
+}
+
+ABP* consultaOrdenadaInicioABP(ABP *arv)
 {
     return arv;
 }
 
-ABP* consultaOrdenadaMeioABP(ABP *arv, int qDados)
+ABP* consultaOrdenadaInicioCompABP(ABP *arv, long long int *comp)
+{
+    return arv;
+}
+
+ABP* consultaOrdenadaMeioABP(ABP *arv, int long qDados)
 {
     int i;
 
@@ -81,7 +126,32 @@ ABP* consultaOrdenadaMeioABP(ABP *arv, int qDados)
     return arv;
 }
 
-ABP* consultaOrdenadaUltimoABP(ABP *arv, int qDados)
+ABP* consultaOrdenadaMeioCompABP(ABP *arv, int long qDados, long long int *comp)
+{
+    int i;
+
+    *comp += 1;
+    if (arv->dir == NULL)               //arvore decrescente
+    {
+        for (i = 0; i < qDados/2; i++)
+        {
+            arv = arv->esq;
+            *comp += 1;
+        }
+    }
+    else                                //arvore crescente
+    {
+        for (i = 0; i < qDados/2; i++)
+        {
+            arv = arv->dir;
+            *comp += 1;
+        }
+    }
+
+    return arv;
+}
+
+ABP* consultaOrdenadaFimABP(ABP *arv, int long qDados)
 {
     int i;
 
@@ -99,20 +169,39 @@ ABP* consultaOrdenadaUltimoABP(ABP *arv, int qDados)
     return arv;
 }
 
-void destroiNodos(ABP *arv)
+ABP* consultaOrdenadaFimCompABP(ABP *arv, int long qDados, long long int *comp)
+{
+    int i;
+
+    *comp += 1;
+    if(arv->dir == NULL)    //arvore decrescente
+    {
+        for (i = 0; i < qDados - 1; i++)
+        {
+            arv = arv->esq;
+            *comp += 1;
+        }
+    }
+    else                    //arvore crescente
+    {
+        for (i = 0; i < qDados - 1; i++)
+        {
+            arv = arv->dir;
+            *comp += 1;
+        }
+    }
+
+    return arv;
+}
+
+void destroiArvore(ABP* arv)
 {
     if (arv == NULL)
         return;
     else
     {
-        destroiNodos(arv->esq);
-        destroiNodos(arv->dir);
+        destroiArvore(arv->esq);
+        destroiArvore(arv->dir);
         free(arv);
     }
-}
-
-ABP* destroiArvore(ABP* arv)
-{
-    destroiNodos(arv);
-    return NULL;
 }
