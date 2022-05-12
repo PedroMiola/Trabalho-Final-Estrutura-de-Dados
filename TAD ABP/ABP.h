@@ -1,15 +1,20 @@
 typedef struct ABP{
-        int info;
+        long int info;
         struct ABP *esq;
         struct ABP *dir;
 }ABP;
 
-ABP* insereArvore(ABP *arv, int chave);
-ABP* consultaABP(ABP *arv, int chave);
+ABP* insereArvoreComp(ABP *arv, long int chave, long long int *comp);
 ABP* criaArvore(void);
-ABP* destroiArvore(ABP *arv);
-void destroiNodos(ABP *arv);
+void destroiArvore(ABP *arv);
 void imprimeArvore(ABP *arv , int nivel);
-ABP* consultaOrdenadaPrimeiroABP(ABP *arv);
-ABP* consultaOrdenadaMeioABP(ABP *arv, int qDados);
-ABP* consultaOrdenadaUltimoABP(ABP *arv, int qDados);
+
+ABP* consultaABP(ABP *arv, long int chave);
+ABP* consultaOrdenadaInicioABP(ABP *arv);
+ABP* consultaOrdenadaMeioABP(ABP *arv, long int qDados);
+ABP* consultaOrdenadaFimABP(ABP *arv, long int qDados);
+
+ABP* consultaCompABP(ABP *arv, long int chave, long long int *comp);
+ABP* consultaOrdenadaInicioCompABP(ABP *arv, long long int *comp);
+ABP* consultaOrdenadaMeioCompABP(ABP *arv, long int qDados, long long int *comp);
+ABP* consultaOrdenadaFimCompABP(ABP *arv, long int qDados, long long int *comp);
