@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX_NUM 1000000
+#define MAX_NUM 5000
 
 int main ()
 {
@@ -128,16 +128,16 @@ int main ()
     listaComp = criaLista();
     for (long i = 0; i < MAX_NUM; i++)
     {
-        listaComp = insereInicioComp (listaComp, rand()%MAX_NUM, &comp);
+        listaComp = insereFinalComp (listaComp, rand()%MAX_NUM, &comp);
     }
-    printf("\n\nNumero de comps para inserir %li nodos aleatorios no inicio: %lli", MAX_NUM ,comp);
+    printf("\n\nNumero de comps para inserir %li nodos aleatorios no Final: %lli", MAX_NUM ,comp);
 
     comp = 0;
-    for (long i = 0; i < 10; i++)
+    for (long i = 0; i < 10000; i++)
     {
         consultaNumComp (listaComp, rand()%MAX_NUM, &comp);
     }
-    printf("\nMedia do numero de comps para consultar, em uma lista de %d nodos, 10 nodos aleatorios: %lli\n\n\n", MAX_NUM ,comp/10);
+    printf("\nMedia do numero de comps para consultar, em uma lista de %d nodos, 10000 nodos aleatorios: %lli\n\n\n", MAX_NUM ,comp/10000);
     listaComp = destroiLista(listaComp);
 
     return 0;
