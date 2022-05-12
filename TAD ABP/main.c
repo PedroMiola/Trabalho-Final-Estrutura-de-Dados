@@ -4,7 +4,7 @@
 #include <windows.h>
 #include "ABP.h"
 
-#define QDADOS 50000
+#define QDADOS 10000
 
 int main()
 {
@@ -22,7 +22,8 @@ int main()
         arv1 = insereArvoreComp(arv1, i + 1, &comp);
     end = clock();
     tempo = ((double) (end - start));
-    printf("Comparacoes para carregar e inserir %li dados ordenados: %lli\n", QDADOS, comp);
+
+    printf("Comparacoes para carregar e inserir %d dados ordenados: %lli\n", QDADOS, comp);
     printf("Tempo para carregar e inserir %li dados ordenados (ms): %.2lf\n", QDADOS, tempo);
 
     printf("\n=======================VALOR, TEMPO, E COMPARACOES DA CONSULTA NO INICIO DA ARVORE ORDENADA=======================\n\n");
@@ -78,10 +79,9 @@ int main()
 
     printf("\n=======================CONSULTA DE 10 VALORES ALEATORIOS=======================\n\n");
 
-    //Sleep(10000);
-    //srand(time(NULL));
-    int aleatorio;
+    long int aleatorio;
     double mediaTempo = 0;
+    float mediaComp = 0;
     for (int i = 0; i < 10; i++)
     {
         aleatorio = rand() % QDADOS;
@@ -91,16 +91,15 @@ int main()
         tempo = ((double) (end - start));
         mediaTempo += tempo;
 
-        if(nodoConsultado == NULL)
-            printf("Tempo %d da consulta de valor %li (ms): %.2lf (Nao encontrado na arvore)\n", i + 1, aleatorio, tempo);
-        else
-            printf("Tempo %d da consulta de valor %li (ms): %.2lf\n", i + 1, aleatorio, tempo);
+        printf("Tempo %d da consulta de valor %li (ms): %.2lf\n", i + 1, aleatorio, tempo);
 
         comp = 0;
         nodoConsultado = consultaCompABP(arv2, aleatorio, &comp);
         printf("Numero de comparacoes: %lli\n\n", comp);
+        mediaComp += comp;
     }
     printf("MEDIA DE TEMPO DAS 10 CONSULTAS ALEATORIAS (ms): %.2lf\n", mediaTempo/10);
+    printf("MEDIA DE COMPARACOES DAS CONSULTAS ALEATORIAS: %.2f\n", mediaComp/10);
 
     return 0;
 }

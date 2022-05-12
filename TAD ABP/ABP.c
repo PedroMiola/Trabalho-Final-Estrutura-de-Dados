@@ -41,6 +41,7 @@ ABP* insereArvoreComp(ABP *arv, long int chave, long long int *comp)
         ABP *atual = arv;
         ABP *ant = NULL;
 
+        *comp += 1;
         while(atual != NULL)
         {
             ant = atual;

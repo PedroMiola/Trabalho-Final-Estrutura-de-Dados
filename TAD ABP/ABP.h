@@ -7,7 +7,6 @@ typedef struct ABP{
 ABP* insereArvoreComp(ABP *arv, long int chave, long long int *comp);
 ABP* criaArvore(void);
 void destroiArvore(ABP *arv);
-void destroiNodos(ABP *arv);
 void imprimeArvore(ABP *arv , int nivel);
 
 ABP* consultaABP(ABP *arv, long int chave);
